@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Dashboard</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+<div class="logo-area">
+
+    <img src="img/logo-ut.png"
+         alt="Logo UT"
+         class="logo-ut">
+
+    <h2>SITTA UT</h2>
+
+</div>
+
+<ul>
+
+<li>
+<a href="stock.html">
+Informasi Bahan Ajar
+</a>
+</li>
+
+<li>
+<a href="tracking.html">
+Tracking Pengiriman
+</a>
+</li>
+
+<li class="dropdown">
+
+    <a href="#"
+   onclick="toggleDropdown(event)">
+    Laporan ▼
+</a>
+
+    <ul class="dropdown-menu">
+
+        <li>
+            <a href="monitoring.html">
+                Monitoring Progress DO Bahan Ajar
+            </a>
+        </li>
+
+        <li>
+            <a href="rekap.html">
+                Rekap Bahan Ajar
+            </a>
+        </li>
+
+    </ul>
+
+</li>
+
+<li>
+<a href="histori.html">
+Histori
+</a>
+</li>
+
+<li>
+<a href="#"
+onclick="logout()">
+Logout
+</a>
+</li>
+
+</ul>
+
+</nav>
+
+<div class="dashboard-content">
+
+<h1 id="greeting"></h1>
+
+<p class="welcome-text">
+Selamat datang di aplikasi SITTA
+</p>
+
+<div class="stats-container">
+
+    <div class="stat-card">
+        <h3>Total Bahan Ajar</h3>
+        <p>1.587</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Pengiriman Hari Ini</h3>
+        <p>24</p>
+    </div>
+
+    <div class="stat-card">
+        <h3>Stok Tersedia</h3>
+        <p>548</p>
+    </div>
+
+</div>
+
+<h2>Menu Cepat</h2>
+
+<div class="menu-container">
+
+    <a href="stock.html" class="menu-card">
+        Informasi Bahan Ajar
+    </a>
+
+    <a href="tracking.html" class="menu-card">
+        Tracking Pengiriman
+    </a>
+
+    <a href="monitoring.html" class="menu-card">
+        Monitoring DO
+    </a>
+
+    <a href="histori.html" class="menu-card">
+        Histori Transaksi
+    </a>
+    <a href="#"
+   class="menu-card"
+   onclick="logout()">
+    Logout
+    </a>
+
+</div>
+
+<h2>Aktivitas Terakhir</h2>
+
+<div class="activity-card">
+
+    <p>📦 DO2023001 berhasil dikirim ke UPBJJ Jakarta</p>
+
+    <p>🚚 DO2023002 sedang diproses</p>
+
+    <p>📚 Stok ASIP4301 diperbarui menjadi 548</p>
+
+</div>
+
+</div>
+<script>
+
+function toggleDropdown(event){
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    const menu =
+        document.querySelector(".dropdown-menu");
+
+    menu.classList.toggle("show");
+}
+
+document.addEventListener("click", function(){
+
+    const menu =
+        document.querySelector(".dropdown-menu");
+
+    menu.classList.remove("show");
+});
+
+</script>
+<script>
+
+let jam = new Date().getHours();
+
+let salam = "";
+
+if(jam < 12){
+    salam = "Selamat Pagi";
+}
+else if(jam < 17){
+    salam = "Selamat Siang";
+}
+else{
+    salam = "Selamat Sore";
+}
+
+let userLogin =
+JSON.parse(localStorage.getItem("userLogin"));
+
+if(userLogin){
+
+    document.getElementById("greeting").innerHTML =
+    salam + ", " + userLogin.nama;
+
+}else{
+
+    document.getElementById("greeting").innerHTML =
+    salam;
+
+}
+
+</script>
+<script>
+
+function logout(){
+
+    localStorage.removeItem("userLogin");
+
+    window.location.href =
+    "index.html";
+
+}
+
+</script>
+</body>
+</html>

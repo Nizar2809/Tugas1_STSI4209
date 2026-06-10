@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Informasi Bahan Ajar</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Informasi Bahan Ajar</h1>
+
+<p class="subtitle">
+Peragaan Data Bahan Ajar
+</p>
+
+<div id="daftarBuku"></div>
+
+</div>
+
+<script src="js/data.js"></script>
+
+<script>
+
+let container =
+document.getElementById("daftarBuku");
+
+dataBahanAjar.forEach(item=>{
+
+container.innerHTML += `
+
+<div class="book-card">
+
+<img
+src="${item.cover}"
+alt="${item.namaBarang}">
+
+<div class="info-box">
+
+<label>Kode Lokasi</label>
+
+<p>${item.kodeLokasi}</p>
+
+</div>
+
+<div class="info-box">
+
+<label>Kode Barang</label>
+
+<p>${item.kodeBarang}</p>
+
+</div>
+
+<div class="info-box">
+
+<label>Nama Barang</label>
+
+<p>${item.namaBarang}</p>
+
+</div>
+
+<div class="info-box">
+
+<label>Jenis Barang</label>
+
+<p>${item.jenisBarang}</p>
+
+</div>
+
+<div class="info-box">
+
+<label>Edisi</label>
+
+<p>${item.edisi}</p>
+
+</div>
+
+<div class="info-box">
+
+<label>Stok</label>
+
+<p>${item.stok}</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+</script>
+
+</body>
+
+</html>

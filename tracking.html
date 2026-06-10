@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Tracking</title>
+
+<link rel="stylesheet"
+href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="tracking-container">
+
+    <h1 class="tracking-title">
+        Tracking Pengiriman
+    </h1>
+
+    <div class="search-box">
+
+        <input
+        type="text"
+        id="nomorDO"
+        placeholder="Masukkan Nomor Delivery Order">
+
+        <button onclick="cariTracking()">
+            Cari
+        </button>
+
+    </div>
+
+    <div id="hasil"></div>
+
+</div>
+
+<script src="js/data.js"></script>
+
+<script>
+
+function cariTracking(){
+
+let nomor =
+document.getElementById("nomorDO")
+.value;
+
+let data =
+dataTracking[nomor];
+
+if(!data){
+
+alert("Data tidak ditemukan");
+
+return;
+}
+
+let html = `
+
+<div class="tracking-card">
+
+<h3>${data.nama}</h3>
+
+<p>No DO :
+${data.nomorDO}</p>
+
+<p>Status :
+${data.status}</p>
+
+<p>Ekspedisi :
+${data.ekspedisi}</p>
+
+<p>Total :
+${data.total}</p>
+
+</div>
+
+<h3>Perjalanan Paket</h3>
+
+<div class="timeline">
+`;
+
+data.perjalanan.forEach(item=>{
+
+html += `
+
+<div class="timeline-item">
+
+<strong>
+${item.keterangan}
+</strong>
+
+<div class="timeline-date">
+${item.waktu}
+</div>
+
+</div>
+
+`;
+
+});
+
+html += `</div>`;
+
+document.getElementById("hasil")
+.innerHTML = html;
+}
+
+document.getElementById("hasil")
+.innerHTML = `
+
+<h3>${data.nama}</h3>
+
+<p>Status:
+${data.status}</p>
+
+<p>Ekspedisi:
+${data.ekspedisi}</p>
+
+<p>Tanggal:
+${data.tanggalKirim}</p>
+
+<p>Total:
+${data.total}</p>
+
+`;
+
+
+</script>
+
+</body>
+</html>
